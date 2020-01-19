@@ -1,7 +1,7 @@
 const React = require('react');
-import PropTypes from 'prop-types';
-import { ViewPropTypes } from 'react-native';
-const ReactNative = require('react-native');
+const { ViewPropTypes } = ReactNative = require('react-native');
+const PropTypes = require('prop-types');
+const createReactClass = require('create-react-class');
 const {
   StyleSheet,
   Text,
@@ -10,7 +10,7 @@ const {
 } = ReactNative;
 const Button = require('./Button');
 
-const DefaultTabBar = React.createClass({
+const DefaultTabBar = createReactClass({
   propTypes: {
     goToPage: PropTypes.func,
     activeTab: PropTypes.number,
@@ -67,8 +67,9 @@ const DefaultTabBar = React.createClass({
       bottom: 0,
     };
 
-    const left = this.props.scrollValue.interpolate({
-      inputRange: [0, 1, ], outputRange: [0,  containerWidth / numberOfTabs, ],
+    const translateX = this.props.scrollValue.interpolate({
+      inputRange: [0, 1],
+      outputRange: [0,  containerWidth / numberOfTabs],
     });
     return (
       <View style={[styles.tabs, {backgroundColor: this.props.backgroundColor, }, this.props.style, ]}>
@@ -77,7 +78,17 @@ const DefaultTabBar = React.createClass({
           const renderTab = this.props.renderTab || this.renderTab;
           return renderTab(name, page, isTabActive, this.props.goToPage);
         })}
-        <Animated.View style={[tabUnderlineStyle, { left, }, this.props.underlineStyle, ]} />
+        <Animated.View
+          style={[
+            tabUnderlineStyle,
+            {
+              transform: [
+                { translateX },
+              ]
+            },
+            this.props.underlineStyle,
+          ]}
+        />
       </View>
     );
   },
