@@ -1,6 +1,6 @@
 {
   "name": "@cross2d/react-native-scrollable-tab-view",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "[![npm version](https://badge.fury.io/js/react-native-scrollable-tab-view.svg)](https://badge.fury.io/js/react-native-scrollable-tab-view)",
   "main": "index.js",
   "scripts": {
@@ -21,6 +21,7 @@
     "react-native": ">=0.20.0"
   },
   "dependencies": {
+    "prop-types": "^15.7.2",
     "react-timer-mixin": "^0.13.3"
   },
   "devDependencies": {
